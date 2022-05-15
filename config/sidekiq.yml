@@ -1,0 +1,20 @@
+---
+:verbose: false
+:concurrency: 10
+:timeout: 25
+
+:queues:
+  - critical
+  - default
+  - <%= `hostname`.strip %>
+  - low
+
+production:
+  :concurrency: 25
+staging:
+  :concurrency: 15
+
+:schedule:
+  payment_status_checker:
+    cron: '5 * * * *'
+    class: PaymentStatusChecker
